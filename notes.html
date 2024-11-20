@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Notes</title>
+    <!-- Yifan Zhu
+         Lesson 11 Notes
+         11/10/2024 -->
+    <style>
+        body{
+            font-size: 18px;
+            line-height: 1.5em;
+            background-color: #f3f3f3;
+            color: #212427;
+            font-family: Helvetica, sans-serif;
+        }
+
+        
+
+        h1{
+            text-align: center;
+        }
+
+        h1, h2{
+            font-weight: 400;
+        }
+
+        h2, h3{
+            text-align: center;
+        }
+
+        p{
+            text-align: justify;
+        }
+        a{
+            text-decoration: none;
+        }
+        
+
+        @media screen and (min-width: 750px) {
+            h1{
+                font-size: 1.5em;
+            }
+            h2{
+                font-size: 1.25em;
+            }
+
+            #small_table{
+                width: 30%;
+            }
+            #medium_table{
+                width: 60%;
+            }
+        }
+        @media screen and (max-width: 749px) {
+            body{
+                line-height: 1.2em;
+            }
+            h1{
+                font-size: 1.25em;
+            }
+            h2{
+                font-size: 1.1em;
+            }
+            #small_table, #medium_table{
+                width: 95%;
+            }
+        }
+    </style>
+     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> 
+</head>
+<body class="w3-light_gray">
+    <header class="w3-container">
+        <div class="w3-content">
+            <h1>Notes</h1>
+        </div>      
+    </header>
+    <main>
+        <div id="lesson19" class="w3-container w3-margin">
+            <div class="w3-content" style="max-width: 960px;">
+                <h2 class="w3-blue-grey">
+                    Lesson 19: Understanding Dynamic Websites and HTML5 Applications
+                </h2>
+                <h3>
+                    What You'll Learn in this Lesson
+                </h3>
+                <ul class="w3-ul w3-border">
+                    <li>How to conceptualize different types of dynamic content</li>
+                    <li>How to include JavaScript in your HTML</li>
+                    <li>How to display randomized text with JavaScript</li>
+                    <li>How to change images by using JavaScript and user events</li>
+                    <li>How to begin thinking ahead to putting all the pieces together to create HTML5 applications</li>
+                  </ul>
+                <p>
+                    Web development involves server and client-side scripting, both are forms of computer programming. Server-side scripting is a process where scripts run on a web server, sending results to the browser. JavaScript code can be stored in external files or directly in HTML files, with the browser recognizing its existence through the tag pair. &lt;script> tags are placed between &lt;head> tags to provide JavaScript functions or other information for the rest of the page to use. JavaScript allows you to display unique content on each page load, such as interesting text or images. JavaScript client-side interactivity involves manipulating the Document Object Model (DOM), an invisible structure for documents, not an HTML structure or semantic formatting. 
+                </p>
+                <p>
+                    The document is the overall container object, and any container created within it with an assigned ID can be referenced by that ID. Unobtrusive JavaScript is a method for writing JavaScript scripts, not necessarily for interactive web pages, but best practices suggest considering it. Small images display smaller versions of large images, popular in online catalogs for alternative product views. Large images can be unwieldy, so small gallery views are preferred. HTML5 extends beyond basic markup to include APIs for complex applications, including native audio and video elements and built-in offline storage mechanisms, allowing full-blown applications to run without a network connection. 
+                </p>
+                <h3>
+                    JavaScript Comments
+                </h3>
+                <p>
+                    Use double slashes <code class="w3-codespan">//</code> to start a single line comment. Any text between // and the end of the line will be ignored 
+                    <br>
+                    <code class="w3-codespan">// THIS IS A COMMENT</code>
+                </p>
+                <p>
+                    Start a multi-line comment with <code class="w3-codespan">/*</code> and end it with <code class="w3-codespan">*/</code>
+                    <br>
+                    <code class="w3-codespan">
+                        /* <br>
+                        multiple lines <br>
+                        of <br>
+                        Comments<br>
+                        */
+                    </code>
+                </p>
+                <br>
+            </div>
+        </div>
+        <div id="lesson20" class="w3-container w3-margin">
+            <div class="w3-content" style="max-width: 960px;">
+                <h2 class="w3-blue-grey">
+                    Lesson 20: Getting Started with JavaScript Programming
+                </h2>
+                <h3>
+                    What You'll Learn in this Lesson
+                </h3>
+                <ul class="w3-ul w3-border">
+                    <li>How and why to organize scripts using functions</li>
+                    <li>What objects are and how JavaScript uses them</li>
+                    <li>How JavaScript can respond to events</li>
+                    <li>How and when to use conditional statements and loops</li>
+                    <li>How browsers execute scripts in the proper order</li>
+                    <li>Basic syntax rules for avoiding JavaScript errors</li>
+                    <li>What JSON is and how it can be used</li>
+                  </ul>
+    
+                <p>
+                    A statement is a single action code section in a JavaScript program, serving as the fundamental units of the program. A statement in JavaScript can be broken across multiple lines or include multiple statements in a single line. A semicolon marks the end, but can be omitted if starting a new line. A function is a unit of JavaScript statements, used in a function call. A function can be defined by an expression enclosed in parentheses and can also return a value to a waiting variable. JavaScript variables are containers that can store numbers, text strings, or other values. JavaScript supports objects, which store data like variables. These objects provide predetermined actions, like document.write, and store properties like name, address, and telephone number for specific purposes. 
+                </p>
+                <p>
+                    JavaScript is case sensitive, meaning lowercase and capital letters cannot be used interchangeably. Keywords are always lowercase, built-in objects are capitalized, DOM object names are usually lowercase, and uppercase letters start all words except the first one. Variable names in JavaScript can be uppercase or lowercase, with the same name being used each time. Variable names should not be reserved words, including if and for. JavaScript comments provide brief documentation within a script, useful for understanding it after a break. They can be started with two slashes or in the middle of a line, and support C-style comments. To write valid JavaScript, use comments liberally, use semicolons at the end of each statement, use external JavaScript files, avoid being browser-specific, and keep JavaScript optional. This strategy, known as progressive enhancement, ensures easier reading and debugging, faster page loading, and reusable modular scripts.
+                </p>
+                <h3>
+                    JavaScript Best Practices
+                </h3>
+                <ul class="w3-ul">
+                    <li>Use comments liberally</li>
+                    <li>Use a semicolon at the end of each statement and use only one statement per line</li>
+                    <li>Use external JavaScript files whenever possible</li>
+                    <li> Avoid being browser specific</li>
+                    <li>Keep JavaScript optional</li>
+                  </ul>
+                <br>
+            </div>
+        </div>
+        <div id="lesson21" class="w3-container w3-margin">
+            <div class="w3-content " style="max-width: 960px;">
+                <h2 class="w3-blue-grey">
+                    Lesson 21: Working with the Document Object Model (DOM)
+                </h2>
+                <h3>
+                    What You'll Learn in this Lesson
+                </h3>
+                <ul class="w3-ul w3-border">
+                    <li>How the W3C DOM standard makes dynamic pages easier to control</li>
+                    <li>The basics of the standard DOM objects: window, document, history, and location</li>
+                    <li>How to work with DOM nodes, parents, children, and siblings</li>
+                    <li>How to access and use the properties of DOM nodes</li>
+                    <li>How to access and use DOM node methods</li>
+                    <li>How to control element positioning with JavaScript</li>
+                    <li>How to hide and show elements with JavaScript</li>
+                    <li>How to use JavaScript to add and modify text within a page</li>
+                </ul>
+    
+                <p>
+                    JavaScript allows client-side scripts to dynamically manipulate web browser and documents, using a treelike structure within the DOM, without requiring server requests. The window object represents a browser window, with distinct instances of the browser. Multiple windows open simultaneously, each with its own document. JavaScript references the currently in focus window. The history object is a property of the window object that contains information about previous and next visited locations, including methods to access them. The location object is a child of the window object, storing the URL loaded in the browser window, as demonstrated in a JavaScript statement.
+                </p>
+                <p>
+                    The modern DOM organizes DOM objects under the document object for every element of a page, enhancing understanding of the organization of important DOM objects. In the DOM, each element is a node, with relationships between nodes represented by lines. Nodes can have parents and children, using the same terminology as JavaScript. Text nodes work differently, with paragraph text being a child of the &lt;p> object. The DOM organization of objects is known as siblings, which refer to objects with the same parent, indicating they are at the same level in the DOM object tree. The DOM structure allows for control over elements in web pages, such as paragraphs and images. Prior to W3C DOM and CSS2, only layers were repositioned. Layers can be created using container elements. A script can dynamically modify a heading's content within a web page by assigning its object to the variable heading1, which contains its text and the firstChild property. 
+                </p>
+                <br>
+                <h3>
+                    Common DOCUMENT Object Properties
+                </h3>
+                <table class="w3-table-all ">
+                    <tr>
+                        <td><code class="w3-codespan">document.URL</code></td>
+                        <td>Specifies the document's URL, which cannot be altered by the user or the code.</td>
+                    </tr>
+                    <tr>
+                        <td><code class="w3-codespan">document.title</code></td>
+                        <td>Refers to the title of the current page, defined by the HTML <code class="w3-codespan">&lt;title></code> tag. You can change the value of this property.</td>
+                    </tr>
+                    <tr>
+                        <td><code class="w3-codespan">document.referrer</code></td>
+                        <td>Returns the URL of the page the user was viewing before the current page—usually the page with a link to the current page. As with <code class="w3-codespan">document.URL</code>, you cannot change the value of <code class="w3-codespan">document.referrer</code>. Note that <code class="w3-codespan">document.referrer</code> will be blank if a user has directly accessed a given URL directly.</td>
+                    </tr>
+                    <tr>
+                        <td><code class="w3-codespan">document.lastModified</code></td>
+                        <td>Indicates the date the document was last modified. This date is sent from the server along with the page.</td>
+                    </tr>
+                    <tr>
+                        <td><code class="w3-codespan">document.cookie</code></td>
+                        <td>Enables you to read or set a cookie used within the document.</td>
+                    </tr>
+                    <tr>
+                        <td><code class="w3-codespan">document.images</code></td>
+                        <td>Returns a collection of images used in the document.</td>
+                    </tr>
+                </table>
+                <br>
+                <h3>
+                    Common DOCUMENT Object Methods
+                </h3>
+                <table class="w3-table-all ">
+                    <tr>
+                        <td><code class="w3-codespan">document.getElementById()</code></td>
+                        <td> Returns the element with the specified ID.</td>
+                    </tr>
+                    <tr>
+                        <td><code class="w3-codespan">document.getElementsByClassName()</code></td>
+                        <td>Returns an array-like object of elements with the specified class.</td>
+                    </tr>
+                    <tr>
+                        <td><code class="w3-codespan">document.getElementsByTagName()</code></td>
+                        <td>Returns an array-like object of elements with the specified tag name.</td>
+                    </tr>
+                    <tr>
+                        <td><code class="w3-codespan">document.querySelector()</code></td>
+                        <td>Returns the first element that matches the specified CSS selector.</td>
+                    </tr>
+                    <tr>
+                        <td><code class="w3-codespan">document.querySelectorAll()</code></td>
+                        <td>Returns a list of elements that match the specified CSS selector.</td>
+                    </tr>
+                    <tr>
+                        <td><code class="w3-codespan">document.createElement()</code></td>
+                        <td>Creates an element with the specified tag name.</td>
+                    </tr>
+                    <tr>
+                        <td><code class="w3-codespan">document.createTextNode()</code></td>
+                        <td>Creates a text node with the specified text.</td>
+                    </tr>
+                    <tr>
+                        <td><code class="w3-codespan">document.write()</code></td>
+                        <td>Writes content directly to the document (rarely recommended).</td>
+                    </tr>
+                    <tr>
+                        <td><code class="w3-codespan">document.open()</code></td>
+                        <td>Opens a new document stream.</td>
+                    </tr>
+                    <tr>
+                        <td><code class="w3-codespan">document.close()</code></td>
+                        <td>Closes the document stream.</td>
+                    </tr>
+                    <tr>
+                        <td><code class="w3-codespan">document.adoptNode()</code></td>
+                        <td>Adopts a node from another document.</td>
+                    </tr>
+                    <tr>
+                        <td><code class="w3-codespan">document.importNode()</code></td>
+                        <td>Imports a node from another document.</td>
+                    </tr>
+                </table>
+                <br>
+                <h3>
+                    Basic Node Properties
+                </h3>
+                <table class="w3-table-all ">
+                    <tr>
+                        <td><code class="w3-codespan">nodeName</code></td>
+                        <td>The name of the node (not the ID). For nodes based on HTML tags, such as <code class="w3-codespan">&lt;p></code> or <code class="w3-codespan">&lt;body></code>, the name is the tag name: <code class="w3-codespan">p</code> or <code class="w3-codespan">body</code>. For the document node, the name is a special code: <code class="w3-codespan">#document</code>. Similarly, text nodes have the name <code class="w3-codespan">#text</code>. This is a read-only value.</td>
+                    </tr>
+                    <tr>
+                        <td><code class="w3-codespan">nodeType</code></td>
+                        <td>An integer describing the node’s type, such as <code class="w3-codespan">1</code> for normal HTML tags, <code class="w3-codespan">3</code> for text nodes, and <code class="w3-codespan">9</code> for the document node. This is a read-only value.</td>
+                    </tr>
+                    <tr>
+                        <td><code class="w3-codespan">nodeValue</code></td>
+                        <td>The actual text contained within a text node. This property returns <code class="w3-codespan">null</code> for other types of nodes.</td>
+                    </tr>
+                    <tr>
+                        <td><code class="w3-codespan">innerHTML</code></td>
+                        <td>The HTML content of any node. You can assign a value including HTML tags to this property and change the DOM child objects for a node dynamically.</td>
+                    </tr>
+                    
+                </table>
+                <br>
+            </div>
+        </div>
+        <div id="resources" class="w3-container w3-margin">
+            <div class="w3-content" style="max-width: 500px;">
+                <h1>
+                    More Resources
+                </h1>
+                <ul class="w3-ul w3-hoverable w3-blue-grey" >
+                    <li><a href="https://www.w3schools.com/jsref/default.asp" target="_blank">Complete JavaScript and HTML DOM References</a></li>
+                    <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank">MDN JavaScript References</a></li>
+                    <li><a href="https://developer.mozilla.org/en-US/docs/Learn/Getting_started_with_the_web/JavaScript_basics" target="_blank">MDN Javascript basic tutorials</a></li>
+                    <li><a href="https://js.institute/" target="_blank">Read more about JavaScript here</a></li>
+                  </ul>
+            </div>
+        </div>
+        <div id="lesson19" class="w3-container w3-margin">
+            <div class="w3-content" style="max-width: 960px;">
+                <h1 class="w3-blue-grey">
+                    Lesson 22: Using JavaScript Variables, Strings, and Arrays
+                </h1>
+                <h3>
+                    What You'll Learn in this Lesson
+                </h3>
+                <ul class="w3-ul w3-border">
+                    <li>How to name, declare, and assign variables</li>
+                    <li>How to choose whether to use local or global variables</li>
+                    <li>How to convert between different data types</li>
+                    <li>How to create and use String objects</li>
+                    <li>How to create and use arrays of numbers and strings</li>
+                    <li>How to define, call, and return values from functions</li>
+                    <li>How to use object properties and values</li>
+                    <li>How to define and use object methods</li>
+                    <li>How to use the Math object’s methods</li>
+                    <li>How to use new and this keywords to work with objects</li>
+                    <li>How to use the Date object to work with dates</li>
+                  </ul>
+                <p>
+                    Variables are named containers for data storage, with unique names chosen by the user. They can include alphabetic letters, digits, underscores, spaces, and underscores. The first character must be a letter or underscore. Variable names are case sensitive and have no official limit. Longer names may require a different naming convention. JavaScript uses the var keyword to declare variables, which can be omitted, but they are still declared when assigning a value. the equal sign (=) is used to assign a value to a variable. JavaScript offers two types of shorthand for this syntax: the += operator, which creates a shorter version of the preceding example, and the −= operator, which subtracts a number from a variable. The increment and decrement operators, ++ and −−, are also included. An expression is a JavaScript expression that combines variables and values to evaluate to a single value, with operators like + and / used to combine these values. JavaScript uses operator precedence rules to calculate values using multiple operators. The highest precedence operator is evaluated first, ensuring the desired result. However, this can sometimes result in incorrect results, which can be controlled using parentheses. JavaScript supports basic data types like Number, Boolean, String, and Null. These types allow JavaScript to store integers, logical values, strings, and undefined variables, ensuring efficient data handling. 
+                    </p>
+                    <P>
+                    JavaScript is a programming language that facilitates data conversions between different data types. JavaScript stores strings as String objects, similar to other variables. Two ways to create a new String object are using built-in functions and object-oriented syntax. Common techniques for working with strings include assigning strings to variables. Assigning a value to a string is similar to assigning an initial value to any other variable, and can be done after the string has been created. The substring method returns a string with a portion of the original string between two index values, specified in parentheses, like the string test string. An array is a numbered group of data items, containing strings, numbers, objects, or other types. To create a numeric array, declare it and assign values using an index. The sort method doesn't work with numeric arrays alphabetically. A function can be specified in the sort method's parameters to correctly sort a numeric array. JavaScript supports functions to organize scripts, making them easier to read. Functions are groups of JavaScript statements that can be used as a single unit. JavaScript creates an array using the new keyword, utilizing built-in functionality and properties like location.href and length property to store values within the object. 
+                </p>
+            </div>
+        </div>
+        <div id="lesson23" class="w3-container w3-margin">
+            <div class="w3-content" style="max-width: 960px;">
+                <h1 class="w3-blue-grey">
+                    Lesson 23: Controlling Flow with Conditions and Loops
+                </h1>
+                <h3>
+                    What You'll Learn in this Lesson
+                </h3>
+                <ul class="w3-ul w3-border ">
+                    <li>How to test conditions with the if statement</li>
+                    <li>How to use comparison operators to compare values</li>
+                    <li>How to use logical operators to combine conditions</li>
+                    <li>How to use alternative conditions with else</li>
+                    <li>How to create expressions with conditional operators</li>
+                    <li>How to test for multiple conditions</li>
+                    <li>How to perform repeated statements with the for loop</li>
+                    <li>How to use while and do...while loops</li>
+                    <li>How to create infinite loops (and why you shouldn’t)</li>
+                    <li>How to escape from loops and continue loops</li>
+                    <li>How to loop through an array’s properties</li>
+                </ul>
+                <h4 class="w3-blue-grey w3-padding-small">Conditional statements</h4>
+                <p>
+                    A <strong>conditional statement</strong> allows a script to perform different actions based on whether a specified condition evaluates to <code class="w3-codespan">true</code> or  <code class="w3-codespan">false</code> . In JavaScript, the primary tool for implementing a conditional statement is the <code class="w3-codespan">if </code> statement. A variety of conditional operator exists, including:
+                </p>
+                <table class="w3-table-all w3-small" id="small_table">
+                    <tr>
+                      <td><code class="w3-codespan">==</code></td>
+                      <td>Is equal to</td>
+                    </tr>
+                    <tr>
+                        <td><code class="w3-codespan">!=</code></td>
+                        <td>Is not equal to</td>
+                    </tr>
+                    <tr>
+                        <td><code class="w3-codespan">&lt;</code></td>
+                        <td>Is less than</td>
+                    </tr>
+                    <tr>
+                        <td><code class="w3-codespan">&gt;</code></td>
+                        <td>Is greater than</td>
+                    </tr>
+                    <tr>
+                        <td><code class="w3-codespan">&gt;=</code></td>
+                        <td>Is greater than or equal to</td>
+                    </tr>
+                    <tr>
+                        <td><code class="w3-codespan">&lt;=</code></td>
+                        <td>Is less than or equal to</td>
+                    </tr>
+                </table>
+                <p>
+                    Quick decisions can be made using JavaScript's shorthand conditional expression, a syntax similar to C, in addition to the if statement. <code class="w3-codespan">variable= (condition) ? (value if true) : (value if false);</code>
+                </p>
+                <p>
+                    An example of <strong>using multiple conditional statements</strong>
+                </p>
+                <div class="w3-code jsHigh notranslate">
+                    if (hour_of_day &lt; 10)  { <br>
+                        document.write("Good morning."); <br>
+                   }  else if ((hour_of_day >= 14) && (hour_of_day &lt;= 17)</code>)  {<br>
+                        document.write("Good afternoon.");<br>
+                   }  else if (hour_of_day >= 17)  {<br>
+                        document.write("Good evening.");<br>
+                   }  else {<br>
+                        document.write("Good day.");<br>
+                   }<br>
+                </div>
+                <p>
+                    Although this construction is logical, it can get messy if each if statement has its own block of code with several statements. Instead, JavaScript's switch statement lets you combine multiple variable or expression tests into one block
+                </p>
+                <div class="w3-code jsHigh notranslate">
+                    switch(button) { <br>
+                        case "next":<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;window.location="next.html";<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;break;<br>
+                        case "previous":<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;window.location="previous.html";<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;break;<br>
+                        case "home":<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;window.location="home.html";<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;break;<br>
+                        case "back":<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;window.location="menu.html";<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;break;<br>
+                        default:<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;window.alert("Wrong button.");<br>
+                    }
+                </div>
+                <h4 class="w3-blue-grey w3-padding-small">Looping</h4>
+                <p>
+                    The <code class="w3-codespan">for</code> keyword is a crucial tool for creating loops, which use a counter or index to track the number of times the loop has executed and stops when the counter reaches a certain number. The for loop consists of three parameters: the Initial expression, which assigns an initial value to a variable; the Condition, which remains true for the loop to continue; and the Increment expression, which executes with each iteration of the loop to increment the counter.
+                </p>
+                <p>    
+                    One <strong>possible use of looping</strong> could be to count up or down by printing numbers in a sequence. For example:
+                </p>
+                <div class="w3-code jsHigh notranslate">
+                    for (i=1;i&lt;10;i++) { <br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;document.write("This is line " + i + "&lt;br>");
+                    <br>
+                     }
+                </div>
+                <p>
+                    <code class="w3-codespan">While</code> loops in JavaScript execute statements as long as a condition is true, executing even if the condition starts as false. The while statement is a block of statements within braces, similar to a for loop, with the condition enclosed in parentheses.
+                </p>
+                <div class="w3-code jsHigh notranslate">
+                    while (total &lt; 10) { <br>
+                        <br>
+                        n++;<br>
+                        <br>
+                        total += values[n];<br>
+                        <br>
+                    }
+                </div>
+                <p>
+                    Simple <code class="w3-codespan">for</code> and <code class="w3-codespan">while</code> loops are suitable for simple tasks, but complex loops require careful considerations. Avoid infinite loops and use <code class="w3-codespan">break</code> and <code class="w3-codespan">continue</code> statements for more control. <code class="w3-codespan">for</code> and <code class="w3-codespan">while</code> loops provide control over loops, but can cause problems if not handled carefully.
+                </p>
+                <p>
+                    JavaScript offers a <code class="w3-codespan">...in loop</code>, designed to perform operations on an object's properties, like displaying the user's browser's properties in the built-in navigator object.
+                </p>
+            </div>
+        </div>
+        <div id="lesson23" class="w3-container w3-margin">
+            <div class="w3-content" style="max-width: 960px;">
+                <h1 class="w3-blue-grey">
+                    Lesson 24: Responding to Events and Using Windows
+                </h1>
+                <h3>
+                    What You'll Learn in this Lesson
+                </h3>
+                <ul class="w3-ul w3-border">
+                    <li>How event handlers work</li>
+                    <li>How event handlers relate to objects</li>
+                    <li>How to create an event handler</li>
+                    <li>How to detect mouse and keyboard actions</li>
+                    <li>How to use onclick to change the appearance of &lt;div&gt;</li>
+                    <li>How to access and use the window object hierarchy with JavaScript</li>
+                    <li>How to delay a script’s actions by using timeouts</li>
+                    <li>How to display alerts, confirmations, and prompts</li>
+                </ul>
+                <h4 class="w3-blue-grey w3-padding-small" >Event handler</h4>
+                <p>
+                    A script that detects and responds to an event is called an <strong>event handler</strong>. Powerful JavaScript features include event handlers. A useful event handler often requires only one statement, making them one of the easiest features to learn and use. The DOM has event handlers for detecting mouse actions, including mouse pointer movement and button clicks.
+                </p>
+                <h4 class="w3-blue-grey w3-padding-small">Click handler</h4>
+                <p>
+                    The <code class="w3-codespan">onclick</code> event handler is a basic event used to detect when the mouse button is clicked while positioned over the appropriate object. Here is an example of a "click" handler:
+                </p>
+                <div class="w3-code htmlHigh notranslate">
+                    &lt;a href="http://www.google.com/" onclick="alert('You are about to leave this site.');"&gt;<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;Go Away <br>
+                    &lt;/a&gt;
+                </div>
+                <a href="http://www.w3schools.com/" onclick="alert('You are about to leave this site and go to w3schools.com');" target="_blank" class="w3-codespan">
+                Click here
+                </a>
+                <p>
+                    In the example, the click event handler triggers a JavaScript alert before loading a linked page, enabling conditional links or disclaimers before redirecting the user to the linked page.
+                </p>
+                <br>
+                <h4 class="w3-blue-grey w3-padding-small">Keystrokes handler</h4>
+                <p>
+                    JavaScript detects keyboard actions using keypress, keydown, and keyup event handlers. Keypress events reference the key being pressed and send its value back to the script, while keydown events do not. To know which key the user pressed, use the event object, which stores the ASCII character code for the pressed key. If you prefer to deal with actual characters, use the fromCharCode String method to convert a numeric ASCII code to its corresponding string character. 
+                </p>
+                <p>
+                    You can make your page <strong>listen for keystrokes</strong> by using the <code class="w3-codespan">addEventListener</code> method in JavaScript.
+                </p>
+                <code class="w3-codespan">.addEventListener("keypress", displayKey);</code>
+                <h4 class="w3-blue-grey w3-padding-small">Load events</h4>
+                <p>
+                    The load event is a common event used when the current page, including its images, finishes loading from the server. It is defined using an event handler in the <body> tag, like this:
+
+                        <div class="w3-code jsHigh notranslate">
+                            window.addEventListener("load", function() { <br>
+                                alert("Loading complete");<br>
+                              });
+                        </div>
+                        
+                    An anonymous function is used for short-term or multiple locations.
+                </p>
+                <h4 class="w3-blue-grey w3-padding-small">Window objects</h4>
+                <p>
+                    Users may have multiple window objects in their browser session if they have multiple tabs open or a web page has opened a pop-up window. All open window objects have the document, history, and location objects for scripting. 
+                </p>
+                <p>
+                    Each <strong>window object</strong> has the following useful <strong>properties:</strong>
+                </p>
+                <table class="w3-table-all w3-small" id="medium_table">
+                    <tr>
+                      <td><code class="w3-codespan">window.closed</code></td>
+                      <td>Indicates whether the window has been closed. This makes sense only when you’re working with multiple windows because the current window contains the script and cannot be closed without ending the script.</td>
+                    </tr>
+                    <tr>
+                        <td><code class="w3-codespan">window.name</code></td>
+                        <td>Specifies the name for a window opened by a script.</td>
+                    </tr>
+                    <tr>
+                        <td><code class="w3-codespan">window.outerHeight</code> and <code class="w3-codespan">window.outerWidth</code></td>
+                        <td>Specify the height and width, respectively, of the outside of a browser window.</td>
+                    </tr>
+                    <tr>
+                        <td><code class="w3-codespan">window.screen</code></td>
+                        <td>Provides a child object that stores information about the screen the window is in—its resolution, color depth, and so on.</td>
+                    </tr>
+                    <tr>
+                        <td><code class="w3-codespan"> window.self</code></td>
+                        <td>Acts as a synonym for the current window object.</td>
+                    </tr>
+                </table>
+                <p>
+                    The DOM allows you to manipulate and resize windows created by your scripts using various methods for a window object. JavaScript's window.setTimeout method allows for "sleeping" or "nothing at all" for a specific time. It specifies a time delay and a command to execute after it passes, allowing the browser to continue.
+                </p>
+                <p>
+                    The window object has three methods for displaying messages and interacting with the user: alert, confirm, and prompt. These methods display dialog boxes, prompt input, and use a variable for response.
+                </p>
+            </div>
+        </div>
+        <script src="https://www.w3schools.com/lib/w3codecolor.js"></script>
+
+        <script>
+            w3CodeColor();
+        </script>
+    </main>
+    <footer>
+        <p style="color: rgb(160, 160, 160); text-align: center; padding: 5em;">CISW-17 Yifan</p>
+    </footer>
+</body>
+</html>
