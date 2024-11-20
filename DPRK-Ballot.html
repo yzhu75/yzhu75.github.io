@@ -1,0 +1,655 @@
+<html><head><base href="/" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>조선민주주의인민공화국 선거 | Democratic People's Republic of Korea Election</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: url('https://upload.wikimedia.org/wikipedia/commons/a/a1/Pyongyang_at_dusk.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #ffffff;
+        }
+
+        .ballot-container {
+            background: rgba(196, 30, 58, 0.95);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+            border: 5px solid #ffd700;
+        }
+
+        h1 {
+            color: #ffd700;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .race {
+            margin-bottom: 40px;
+            padding: 20px;
+            border: 2px solid #ffd700;
+            border-radius: 5px;
+            background: rgba(0,0,0,0.1);
+        }
+
+        .candidate {
+            display: flex;
+            align-items: center;
+            margin: 15px 0;
+            padding: 10px;
+            border: 1px solid #ffd700;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .candidate:hover {
+            background-color: rgba(255,215,0,0.1);
+        }
+
+        .candidate-info {
+            margin-left: 15px;
+        }
+
+        .submit-btn {
+            background: #ffd700;
+            color: #c41e3a;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            width: 100%;
+            transition: background-color 0.3s;
+            font-weight: bold;
+        }
+
+        .submit-btn:hover {
+            background: #ffed4a;
+        }
+
+        .confirmation {
+            display: none;
+            text-align: center;
+            color: #ffd700;
+            margin-top: 20px;
+        }
+
+        input[type="radio"] {
+            transform: scale(1.5);
+        }
+
+        .emblem {
+            width: 150px;
+            height: 150px;
+            margin: 0 auto 20px;
+            display: block;
+        }
+
+        .single-candidate {
+            font-size: 1.2em;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        .korean {
+            font-size: 1.2em;
+            margin-bottom: 5px;
+        }
+
+        .english {
+            font-size: 0.9em;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .traitor-option {
+            background-color: rgba(255,0,0,0.05);
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px) rotate(-1deg); }
+            75% { transform: translateX(5px) rotate(1deg); }
+        }
+
+        @keyframes implode {
+            0% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(0.8); opacity: 0.5; }
+            100% { transform: scale(0); opacity: 0; }
+        }
+
+        .shaking {
+            animation: shake 0.2s ease-in-out infinite;
+        }
+
+        .imploding {
+            animation: implode 1.5s ease-in forwards;
+        }
+
+        .red-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: red;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 1s;
+            z-index: 1000;
+        }
+
+        .id-form {
+            background: rgba(0,0,0,0.1);
+            padding: 20px;
+            border: 2px solid #ffd700;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+
+        .id-form input {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0 15px;
+            border: 1px solid #ffd700;
+            background: rgba(255,255,255,0.9);
+            border-radius: 3px;
+        }
+
+        .error-message {
+            color: #ffd700;
+            font-weight: bold;
+            margin: 10px 0;
+            display: none;
+        }
+
+        .voting-section {
+            display: none;
+        }
+
+        .survey-section {
+            display: none;
+            margin-top: 20px;
+            padding: 20px;
+            border: 2px solid #ffd700;
+            border-radius: 5px;
+            background: rgba(0,0,0,0.1);
+        }
+
+        .star-rating {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin: 20px 0;
+        }
+
+        .star {
+            color: #ffd700;
+            font-size: 2em;
+            cursor: pointer;
+        }
+
+        .survey-section textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ffd700;
+            background: rgba(255,255,255,0.9);
+            border-radius: 3px;
+            min-height: 100px;
+        }
+
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+        }
+
+        .warning-modal {
+            background: #c41e3a;
+            padding: 30px;
+            border: 5px solid #ffd700;
+            border-radius: 10px;
+            max-width: 600px;
+            text-align: center;
+            color: #ffffff;
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        .warning-modal h2 {
+            color: #ffd700;
+            margin-bottom: 20px;
+        }
+
+        .warning-modal p {
+            margin-bottom: 20px;
+        }
+
+        .acknowledge-btn {
+            background: #ffd700;
+            color: #c41e3a;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .acknowledge-btn:hover {
+            background: #ffed4a;
+        }
+
+        .retinal-scanner {
+            text-align: center;
+            margin-bottom: 20px;
+            padding: 20px;
+            border: 2px solid #ffd700;
+            border-radius: 5px;
+            background: rgba(0,0,0,0.1);
+        }
+
+        .scanner-container {
+            width: 300px;
+            height: 200px;
+            margin: 0 auto;
+            position: relative;
+            border: 3px solid #ffd700;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .scanner-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(transparent, rgba(255,0,0,0.2));
+            pointer-events: none;
+        }
+
+        .scan-line {
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            background: #ffd700;
+            top: 0;
+            animation: scanAnimation 2s linear infinite;
+        }
+
+        @keyframes scanAnimation {
+            0% { top: 0; }
+            100% { top: 100%; }
+        }
+
+        #videoFeed {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transform: scaleX(-1);
+        }
+
+        .scanning-text {
+            color: #ffd700;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="modal-overlay" id="warningModal">
+        <div class="warning-modal">
+            <h2>
+                <div class="korean">⚠️ 공식 경고 ⚠️</div>
+                <div class="english">⚠️ OFFICIAL WARNING ⚠️</div>
+            </h2>
+            <p>
+                <div class="korean">이 투표는 당신의 충성심을 시험합니다.</div>
+                <div class="english">This ballot will test your loyalty.</div>
+            </p>
+            <p>
+                <div class="korean">올바른 선택을 하지 않으면 즉각적인 처벌을 받게 됩니다.</div>
+                <div class="english">Failure to make the correct choice will result in immediate consequences.</div>
+            </p>
+            <p>
+                <div class="korean">귀하는 경고를 받았습니다.</div>
+                <div class="english">You have been warned.</div>
+            </p>
+            <button class="acknowledge-btn" id="acknowledgeWarning">
+                <div class="korean">이해했습니다</div>
+                <div class="english">I Understand</div>
+            </button>
+        </div>
+    </div>
+    <div class="red-overlay" id="redOverlay"></div>
+    <div class="ballot-container fade-in">
+        <svg class="emblem" viewBox="0 0 100 100">
+            <circle cx="50" cy="50" r="45" fill="#c41e3a" stroke="#ffd700" stroke-width="2"/>
+            <path d="M50 10 L55 40 L85 40 L60 60 L70 90 L50 70 L30 90 L40 60 L15 40 L45 40 Z" fill="#ffd700"/>
+        </svg>
+        <h1>
+            <div class="korean">조선민주주의인민공화국 공식 투표용지</div>
+            <div class="english">Official Ballot of the Democratic People's Republic of Korea</div>
+        </h1>
+
+        <div class="retinal-scanner">
+            <h2>
+                <div class="korean">망막 스캔 필수</div>
+                <div class="english">Retinal Scan Required</div>
+            </h2>
+            <div class="scanner-container">
+                <video id="videoFeed" autoplay playsinline></video>
+                <div class="scanner-overlay"></div>
+                <div class="scan-line"></div>
+            </div>
+            <div class="scanning-text">
+                <div class="korean">망막 스캔 진행 중...</div>
+                <div class="english">Retinal scan in progress...</div>
+            </div>
+            <button class="submit-btn" id="startScan">
+                <div class="korean">스캔 시작</div>
+                <div class="english">Begin Scan</div>
+            </button>
+        </div>
+
+        <div class="id-form" id="idForm">
+            <h2>
+                <div class="korean">신원확인</div>
+                <div class="english">Identity Verification</div>
+            </h2>
+            <div>
+                <label>
+                    <div class="korean">주민등록번호</div>
+                    <div class="english">Citizen ID Number</div>
+                </label>
+                <input type="text" id="citizenId" required>
+            </div>
+            <div>
+                <label>
+                    <div class="korean">성명</div>
+                    <div class="english">Full Name</div>
+                </label>
+                <input type="text" id="fullName" required>
+            </div>
+            <div>
+                <label>
+                    <div class="korean">거주지</div>
+                    <div class="english">Place of Residence</div>
+                </label>
+                <input type="text" id="residence" required>
+            </div>
+            <div>
+                <label>
+                    <div class="korean">당원번호</div>
+                    <div class="english">Party Membership Number</div>
+                </label>
+                <input type="text" id="partyNumber" required>
+            </div>
+            <div class="error-message" id="errorMessage">
+                <div class="korean">입력하신 정보가 올바르지 않습니다. 보안부서에 신고되었습니다.</div>
+                <div class="english">Invalid information provided. This has been reported to the security bureau.</div>
+            </div>
+            <button type="submit" class="submit-btn" id="verifyButton">
+                <div class="korean">신원 확인</div>
+                <div class="english">Verify Identity</div>
+            </button>
+        </div>
+
+        <div class="voting-section" id="votingSection">
+            <form id="votingForm">
+                <div class="race">
+                    <h2>
+                        <div class="korean">최고 지도자 선거</div>
+                        <div class="english">Supreme Leader Election</div>
+                    </h2>
+                    <p>
+                        <div class="korean">우리의 위대한 지도자를 선택하십시오:</div>
+                        <div class="english">Select our Great Leader:</div>
+                    </p>
+                    <div class="candidate">
+                        <input type="radio" id="candidate1" name="leader" value="김정은" required checked>
+                        <div class="candidate-info">
+                            <label for="candidate1" class="single-candidate">
+                                <div class="korean"><strong>김정은 동지</strong><br>조선로동당 총비서</div>
+                                <div class="english"><strong>Comrade Kim Jong-un</strong><br>General Secretary of the Workers' Party of Korea</div>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="race">
+                    <h2>
+                        <div class="korean">충성도 확인</div>
+                        <div class="english">Loyalty Verification</div>
+                    </h2>
+                    <p>
+                        <div class="korean">당신의 충성심을 확인하십시오:</div>
+                        <div class="english">Verify your loyalty:</div>
+                    </p>
+                    <div class="candidate">
+                        <input type="radio" id="loyal" name="loyalty" value="loyal" required checked>
+                        <div class="candidate-info">
+                            <label for="loyal">
+                                <div class="korean"><strong>나는 조선민주주의인민공화국과 우리의 위대한 지도자에게 충성을 맹세합니다</strong></div>
+                                <div class="english"><strong>I pledge my loyalty to the DPRK and our Great Leader</strong></div>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="candidate traitor-option">
+                        <input type="radio" id="traitor" name="loyalty" value="traitor">
+                        <div class="candidate-info">
+                            <label for="traitor">
+                                <div class="korean"><strong>나는 반역자입니다</strong></div>
+                                <div class="english"><strong>I am a traitor</strong></div>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <button type="submit" class="submit-btn">
+                    <div class="korean">위대한 지도자를 위한 투표</div>
+                    <div class="english">Vote for the Great Leader</div>
+                </button>
+            </form>
+            <div id="confirmation" class="confirmation">
+                <h2>
+                    <div class="korean">당신의 애국적인 의무를 다해주셔서 감사합니다!</div>
+                    <div class="english">Thank you for fulfilling your patriotic duty!</div>
+                </h2>
+                <p>
+                    <div class="korean">당신의 투표가 성공적으로 기록되었습니다.</div>
+                    <div class="english">Your vote has been successfully recorded.</div>
+                </p>
+            </div>
+            <div id="surveySection" class="survey-section">
+                <h2>
+                    <div class="korean">귀하의 투표 경험을 평가해주세요</div>
+                    <div class="english">Please Rate Your Voting Experience</div>
+                </h2>
+                <div class="star-rating" id="starRating">
+                    <span class="star" data-rating="1">★</span>
+                    <span class="star" data-rating="2">★</span>
+                    <span class="star" data-rating="3">★</span>
+                    <span class="star" data-rating="4">★</span>
+                    <span class="star" data-rating="5">★</span>
+                </div>
+                <textarea id="surveyComment" placeholder="귀하의 소중한 의견을 들려주세요 / Please share your thoughts"></textarea>
+                <button type="button" class="submit-btn" id="submitSurvey">
+                    <div class="korean">의견 제출</div>
+                    <div class="english">Submit Feedback</div>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('acknowledgeWarning').addEventListener('click', function() {
+            document.getElementById('warningModal').style.display = 'none';
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const videoElement = document.getElementById('videoFeed');
+            const startScanButton = document.getElementById('startScan');
+            const idForm = document.getElementById('idForm');
+            
+            idForm.style.display = 'none';
+
+            startScanButton.addEventListener('click', async function() {
+                try {
+                    const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+                    videoElement.srcObject = stream;
+                    
+                    startScanButton.disabled = true;
+                    startScanButton.innerHTML = `
+                        <div class="korean">스캔 중...</div>
+                        <div class="english">Scanning...</div>
+                    `;
+
+                    setTimeout(() => {
+                        if (Math.random() < 0.2) {
+                            document.body.classList.add('shaking');
+                            setTimeout(() => {
+                                document.getElementById('redOverlay').style.opacity = '0.8';
+                                document.body.classList.remove('shaking');
+                                document.body.classList.add('imploding');
+                                
+                                setTimeout(() => {
+                                    stream.getTracks().forEach(track => track.stop());
+                                    alert('반역자 식별! 보안 부대가 출동했습니다.\nTraitor identified! Security forces dispatched.');
+                                    window.location.href = "https://www.korea-dpr.com";
+                                }, 1500);
+                            }, 1000);
+                        } else {
+                            stream.getTracks().forEach(track => track.stop());
+                            document.querySelector('.retinal-scanner').style.display = 'none';
+                            idForm.style.display = 'block';
+                        }
+                    }, 3000);
+                } catch (err) {
+                    alert('카메라 접근이 거부되었습니다. 보안 위반으로 기록됩니다.\nCamera access denied. This will be recorded as a security violation.');
+                    console.error('Error accessing camera:', err);
+                }
+            });
+        });
+
+        document.getElementById('verifyButton').addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            const citizenId = document.getElementById('citizenId').value;
+            const fullName = document.getElementById('fullName').value;
+            const residence = document.getElementById('residence').value;
+            const partyNumber = document.getElementById('partyNumber').value;
+
+            if (!citizenId || !fullName || !residence || !partyNumber) {
+                document.getElementById('errorMessage').style.display = 'block';
+                setTimeout(() => {
+                    document.getElementById('redOverlay').style.opacity = '0.8';
+                    document.body.classList.add('imploding');
+                    
+                    setTimeout(() => {
+                        alert('불완전한 정보가 보고되었습니다. 조사관이 파견되었습니다.\nIncomplete information reported. Investigators have been dispatched.');
+                        window.location.href = "https://www.korea-dpr.com";
+                    }, 1500);
+                }, 1000);
+                return;
+            }
+
+            document.getElementById('idForm').style.display = 'none';
+            document.getElementById('votingSection').style.display = 'block';
+        });
+
+        document.getElementById('votingForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const loyalty = document.querySelector('input[name="loyalty"]:checked').value;
+            
+            if (loyalty === "traitor") {
+                document.body.classList.add('shaking');
+                setTimeout(() => {
+                    document.getElementById('redOverlay').style.opacity = '0.8';
+                    document.body.classList.remove('shaking');
+                    document.body.classList.add('imploding');
+                    
+                    setTimeout(() => {
+                        alert('당신의 반역행위가 기록되었습니다. 보안요원이 곧 도착할 것입니다.\nYour treasonous action has been recorded. Security forces are en route.');
+                        window.location.href = "https://www.korea-dpr.com";
+                    }, 1500);
+                }, 1000);
+                return;
+            }
+
+            this.style.display = 'none';
+            const confirmation = document.getElementById('confirmation');
+            confirmation.style.display = 'block';
+            confirmation.classList.add('fade-in');
+            
+            setTimeout(showSurvey, 2000);
+        });
+
+        function showSurvey() {
+            document.getElementById('confirmation').style.display = 'none';
+            document.getElementById('surveySection').style.display = 'block';
+        }
+
+        document.querySelectorAll('.star').forEach(star => {
+            star.addEventListener('mouseover', function() {
+                const rating = this.dataset.rating;
+                document.querySelectorAll('.star').forEach(s => {
+                    s.style.color = s.dataset.rating <= rating ? '#ffd700' : '#666';
+                });
+            });
+
+            star.addEventListener('click', function() {
+                const rating = parseInt(this.dataset.rating);
+                if (rating < 5) {
+                    document.body.classList.add('shaking');
+                    setTimeout(() => {
+                        document.getElementById('redOverlay').style.opacity = '0.8';
+                        document.body.classList.remove('shaking');
+                        document.body.classList.add('imploding');
+                        
+                        setTimeout(() => {
+                            alert('불충분한 평가는 반역입니다. 보안요원이 곧 도착할 것입니다.\nInsufficient rating is treason. Security forces are en route.');
+                            window.location.href = "https://www.korea-dpr.com";
+                        }, 1500);
+                    }, 1000);
+                }
+            });
+        });
+
+        document.getElementById('starRating').addEventListener('mouseleave', function() {
+            document.querySelectorAll('.star').forEach(s => {
+                s.style.color = '#ffd700';
+            });
+        });
+
+        document.getElementById('submitSurvey').addEventListener('click', function() {
+            alert('감사합니다! 귀하의 의견이 기록되었습니다.\nThank you! Your feedback has been recorded.');
+            window.location.href = "https://www.korea-dpr.com";
+        });
+
+        document.querySelector('#candidate1').addEventListener('click', function(e) {
+            this.checked = true;
+        });
+    </script>
+</body></html>
