@@ -1,0 +1,21 @@
+body {
+    margin: 0 auto; /* 0 margin for top & bottom, auto for right and left */
+    max-width: 600px;
+}
+
+footer p {
+    color: rgb(160, 160, 160); 
+    text-align: center; 
+    padding: 5em;
+}
+
+h1, h2, h3{
+    text-align: center;
+}
+
+img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
