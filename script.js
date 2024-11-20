@@ -8,6 +8,14 @@ const bd_month = bday.getMonth();
 const bd_day = bday.getDate();
 const bd_year = bday.getFullYear();
 
+let b_month = prompt("Please enter your birth month (1-12):");
+let b_day = prompt("Please enter your birth day (1-31):");
+let b_year = prompt("Please enter your birth year (e.g., 1990):");
+b_day = parseInt(b_day);
+b_month = parseInt(b_month) - 1;
+b_year = parseInt(b_year);
+
+
 const Months = [
     "Jan",
     "Feb",
@@ -25,7 +33,7 @@ const Months = [
 
 
 const todayDate = Months[month] + " " + day + " " + year;
-const birthDate = Months[bd_month] + " " + bd_day + " " + bd_year;
+const birthDate = Months[b_month] + " " + b_day + " " + b_year;
 
 const imgElement = document.getElementById('emoji');
 
@@ -34,7 +42,7 @@ const imgElement = document.getElementById('emoji');
 birthdayMsg = "Message";
 
 
-if ( month == bd_month && day == bd_day ) {
+if ( month == b_month && day == b_day ) {
     message = "Happy Birthday!"
     birthdayMsg = "Happy Birthday!"
     imgElement.src = 'happy.webp';
@@ -57,3 +65,4 @@ document.getElementById("dob").innerHTML = birthDate;
 document.getElementById("message").innerHTML = birthdayMsg;
 console.log(message);
 console.log("Today is " + todayDate + " Birthday is "  + birthDate);
+console.log(b_day + " " + b_month + " " + b_year);
